@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    <ul class="nav navbar-nav navbar-right">
+        @if(User.IsInRole("Admin")){
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Listados" asp-action="Index">Listados</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="AlquilerVentas" asp-action="Index">AlquilerVentas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Register">  Register</a>
+        </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">  Logout</a>
+        </li>
+    </ul>
+
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @*<li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>*@
+        @* <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Register">  Register</a>
+            </li>*@
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">  Login</a>
+        </li>
+    </ul>
+}

@@ -1,0 +1,83 @@
+﻿@using BaseUsuario.ViewModels
+@model Usuarios
+
+@{
+    ViewBag.Title = "Registro al sistema";
+}
+<div class="row">    
+    <div class="col-md-4">  
+<form asp-controller="Login" asp-action="Register" method="post">
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.UserName)
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "label label-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password)
+        <input type="password" name="Password" class="form-control" />
+        @Html.ValidationMessageFor(x => x.Password, null, new { @class = "label label-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Apellido)
+        @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Apellido, null, new { @class = "label label-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Nombre)
+        @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "label label-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.NroDocumento)
+        @Html.TextBoxFor(x => x.NroDocumento, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NroDocumento, null, new { @class = "label label-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email, null, new { @class = "label label-danger" })
+    </div>
+    @*No me estaba devolviendo el Rol seleccionado, con la linea siguente si lo hizo
+    <div class="form-group">
+         <label asp-for="Rols" class="control-label"></label>
+        <select asp-for="Rols" class ="form-control" asp-items="ViewBag.Rols"></select>
+         <span asp-validation-for="Rols" class="text-danger"></span>
+    </div>*@
+    <div class="form-group">
+      @Html.LabelFor(x => x.RolsId)
+      @Html.DropDownListFor(x => x.RolsId, ViewData["RolId"] as SelectList, "Selecione Rol", new { @id = "DropDwn", @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.RolsId, null, new { @class = "label label-danger" })
+  </div>
+    <div class="text-right">
+        <input type="submit" value="Registrar" class="btn btn-primary"/>
+    </div>
+  </form>    
+
+</div>
+
+
+<table class="model-state">
+    @foreach (var item in ViewContext.ViewData.ModelState) 
+    {
+        if (item.Value.Errors.Any())
+        { 
+        <tr>
+            <td><b>@item.Key</b></td>
+            <td>@((item.Value == null || item.Value == null) ? "<null>" : item.Value.RawValue)</td>
+            <td>@(string.Join("; ", item.Value.Errors.Select(x => x.ErrorMessage)))</td>
+        </tr>
+        }
+    }
+</table>
+
+ @if (ViewBag.Message != null)
+        {
+    <div class="alert alert-danger">
+       
+            @ViewBag.Message
+        
+    </div>
+    }
+</div>

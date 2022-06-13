@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<BaseUsuario.Controllers.ListadosController.modelo_listaPelAlq>
+@{
+
+}
+
+@Html.Partial("EncabezadoListados")
+
+ <h3>Listado de pelis no Devueltas</h3>
+ 
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 @Html.DisplayNameFor(model => model.Peli)
+            </th>
+            <th>
+                  @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Peli)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

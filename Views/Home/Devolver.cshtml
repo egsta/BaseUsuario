@@ -1,0 +1,30 @@
+﻿@model BaseUsuario.Models.Peliculas
+
+@{
+    ViewData["Title"] = "Devolución Película";
+}
+@*@if(@ViewBag.Tipo == 1) {<h1>  "Alquiler" </h1>} else {<h1> "Compra" </h1>}*@
+
+<h1>Devolucion de Película</h1>
+
+<h3>Esta seguro de devoler la Película?</h3>
+<div>
+    <h4>Peliculas</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.txt_desc)
+        </dt>
+      
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(modelItem => modelItem.txt_desc)
+        </dd>
+      
+    </dl>
+    
+    <form asp-action="DevolverConfirmed">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit"  class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

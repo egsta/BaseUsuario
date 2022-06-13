@@ -1,0 +1,30 @@
+﻿@model BaseUsuario.Models.DatosAlquilerVenta
+
+@{
+    ViewData["Title"] = @ViewBag.Operacion;
+}
+@*@if(@ViewBag.Tipo == 1) {<h1>  "Alquiler" </h1>} else {<h1> "Compra" </h1>}*@
+
+<h1>@ViewBag.Operacion</h1>
+
+<h3>Are you sure you want to Rent this?</h3>
+<div>
+    <h4>Peliculas</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pelicula)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pelicula)
+        </dd>
+  
+    </dl>
+    
+    <form asp-action="AlquilerConfirmed">
+        <input type="hidden" asp-for="Id" />
+         <input type="hidden" asp-for="alq_com" value="@ViewBag.Tipo" />
+        <input type="submit" value="@ViewBag.Operacion" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

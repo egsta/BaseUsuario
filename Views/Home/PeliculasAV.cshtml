@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BaseUsuario.Models.Peliculas>
+
+@{
+    ViewData["Title"] = "Alquiler - Compra";
+}
+
+<h1>Bienvenido @ViewBag.Usuario</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cant_disponibles_alquiler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cant_disponibles_venta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio_alquiler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio_venta)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.txt_desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cant_disponibles_alquiler)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cant_disponibles_venta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio_alquiler)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio_venta)
+            </td>
+            
+            <td>
+                <a asp-action="Alquiler" asp-route-id="@item.Id"  asp-route-tipo_ope="1">Alquiler</a> |
+                <a asp-action="Alquiler" asp-route-id="@item.Id"  asp-route-tipo_ope="2">Compra</a> |
+                <a asp-action="Devolver" asp-route-id="@item.Id"  asp-route-tipo_ope="3">Devolución</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
